@@ -10,13 +10,14 @@ function useCameraStream() {
     async function getCameraStream() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: { facingMode: "environment" },
         });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
       } catch (err) {
         console.error("Error accessing camera:", err);
+        d;
         setStreamError(err);
       }
     }
