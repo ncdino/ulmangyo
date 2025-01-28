@@ -1,14 +1,10 @@
 import Link from "next/link";
 
-export default function Header() {
+export default function Header({ children }) {
   return (
     <div className="font-pretendard font-bold tracking-tighter bg-gradient-to-r from-[#000000] to-[#434343] backdrop-blur top-0 sticky z-[100] py-2">
       <div className="flex justify-between items-center px-4 text-zinc-100">
-        <div className="">
-          가격표에 맞춰서 &nbsp;
-          <span className="font-extrabold text-white text-xl">카메라📸</span>를
-          눌러보세요 !
-        </div>
+        {children}
         <Link href="/cart">
           <button>
             <svg

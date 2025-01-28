@@ -22,6 +22,8 @@ module.exports = {
       },
       backgroundImage: {
         "main-background": "url('/bg1.webp')",
+        "first-halfcard-background": "url('/eslHuman.webp')",
+        "second-halfcard-background": "url('/eslHuman2.webp')",
       },
       fontFamily: {
         pretendard: ["var(--font-pretendard)", "sans-serif"],

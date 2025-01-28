@@ -6,7 +6,10 @@ import useCameraStream from "@/hooks/useCameraStream";
 import useImageAnalysis from "@/hooks/useImageAnalysis";
 import Image from "next/image";
 import CameraImg from "../../../public/camera.png";
+import eslHuman1 from "../../../public/eslHuman.webp";
+import eslHuman2 from "../../../public/eslHuman2.webp";
 import Header from "../components/section/Header";
+import HalfCard from "../components/Card/HalfCard";
 
 export default function CapturePage() {
   const router = useRouter();
@@ -43,7 +46,13 @@ export default function CapturePage() {
 
   return (
     <div className="bg-[#E2E0DF] h-screen">
-      <Header />
+      <Header>
+        <div className="">
+          가격표에 맞춰서 &nbsp;
+          <span className="font-extrabold text-white text-xl">카메라📸</span>를
+          눌러보세요 !
+        </div>
+      </Header>
       <div className="relative p-2 font-pretendard px-2">
         <div className="relative w-full h-1/4 aspect-9/16 inset-0 border border-gray-300 rounded-2xl">
           <video
@@ -52,9 +61,6 @@ export default function CapturePage() {
             playsInline
             className="absolute inset-0 w-full h-full aspect-9/16 object-cover rounded-2xl"
           />
-        </div>
-        <div>
-          <p className="text-4xl font-extrabold tracking-tighter">Title</p>
         </div>
         <button
           onClick={captureImage}
