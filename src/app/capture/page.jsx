@@ -6,6 +6,7 @@ import useCameraStream from "@/hooks/useCameraStream";
 import useImageAnalysis from "@/hooks/useImageAnalysis";
 import Image from "next/image";
 import CameraImg from "../../../public/camera.png";
+import Header from "../components/section/Header";
 
 export default function CapturePage() {
   const router = useRouter();
@@ -41,16 +42,15 @@ export default function CapturePage() {
   }
 
   return (
-    <div className="bg-[#E2E0DF] px-2 py-1">
-      {/* <Header /> */}
-      <div className="relative p-2 font-pretendard h-screen">
+    <div className="bg-[#E2E0DF] ">
+      <Header />
+      <div className="relative p-2 font-pretendard h-screen px-2">
         <div className="relative w-full h-1/4 aspect-9/16 inset-0 border border-gray-300 rounded-2xl">
           <video
             ref={videoRef}
             autoPlay
             playsInline
             className="absolute inset-0 w-full h-full aspect-9/16 object-cover rounded-2xl"
-            onClick={captureImage}
           />
         </div>
         <div>
@@ -59,7 +59,7 @@ export default function CapturePage() {
         <button
           onClick={captureImage}
           disabled={loading}
-          className="absolute bg-transparent text-white px-4 py-2 rounded-full bottom-1 -translate-x-1/2 left-1/2 -translate-y-1/2"
+          className="absolute bg-transparent text-white px-4 py-2 rounded-full bottom-9 -translate-x-1/2 left-1/2 -translate-y-1/2"
         >
           <Image src={CameraImg} alt="Camera Img" className="size-28" />
         </button>
