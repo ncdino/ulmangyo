@@ -89,7 +89,7 @@ function useImageAnalysis() {
               priceCandidateList.push({ text, boundingBox, area });
             }
             
-      console.log("Final priceCandidateList3:", priceCandidateList);
+      // console.log("Final priceCandidateList3:", priceCandidateList);
           });
         });
       });
@@ -103,9 +103,9 @@ function useImageAnalysis() {
         .slice(0, 3)
         .map(({ text, boundingBox, width }) => ({ text, boundingBox, width }));
 
-        console.log("Final priceCandidateList2:", priceCandidateList);
-      console.log("productNameCandidateList:", productNameCandidateList);
-      console.log("priceCandidateList:", priceCandidateList);
+      //   console.log("Final priceCandidateList2:", priceCandidateList);
+      // console.log("productNameCandidateList:", productNameCandidateList);
+      // console.log("priceCandidateList:", priceCandidateList);
 
       const id = uuidv4();
       addDetectedText(
@@ -114,7 +114,7 @@ function useImageAnalysis() {
         productNameCandidateList,
         priceCandidateList
       );
-      console.log("Final priceCandidateList:", priceCandidateList);
+      // console.log("Final priceCandidateList:", priceCandidateList);
     } catch (error) {
       console.error(error);
     } finally {

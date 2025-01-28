@@ -5,6 +5,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/sections/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,mdx}",
   ],
   theme: {
     container: {
@@ -16,11 +17,15 @@ module.exports = {
       },
     },
     extend: {
+      aspectRatio: {
+        "9/16": "9 / 16",
+      },
+      backgroundImage: {
+        "main-background": "url('/bg1.webp')",
+      },
       fontFamily: {
-        paperlogy: ["var(--font-paperlogy)", "sans-serif"],
-        sans: ["var(--font-inter)", "sans-serif"],
-        pretendard: ["Pretendard-Regular", "sans-serif"],
-        pacifico: ["Pacifico", "cursive"],
+        pretendard: ["var(--font-pretendard)", "sans-serif"],
+        galmuri: ["var(--font-galmuri)", "sans-serif"],
       },
       borderRadius: {
         "4xl": "2rem",
@@ -57,6 +62,6 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/aspect-ratio")],
   darkMode: false,
 };

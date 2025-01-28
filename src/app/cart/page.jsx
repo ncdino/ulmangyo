@@ -8,8 +8,6 @@ const Cart = () => {
     (state) => state.updateCartItemQuantity
   );
   const removeCartItem = useStore((state) => state.removeCartItem);
-
-  // 할인율 상태 관리
   const [discounts, setDiscounts] = useState({});
 
   // 총 수량 계산
@@ -18,7 +16,7 @@ const Cart = () => {
     0
   );
 
-  // 총 가격 계산 (할인율 반영)
+  // 총 가격 계산
   const totalPrice = cartItems.reduce((total, item) => {
     const price = Number(item.price.replace(/,/g, ""));
     const discountRate = discounts[item.id] || 0; //기본값 0

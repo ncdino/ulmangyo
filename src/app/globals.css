@@ -2,20 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.custom-clip-path {
+  clip-path: path(
+    "M 0 0 
+       L 208 0 
+       L 208 182 
+       A 26 26 0 0 1 182 208 
+       L 26 208 
+       A 26 26 0 0 1 0 182 
+       Z 
+       M 94 208 
+       A 10 10 0 1 1 114 208 
+       A 10 10 0 1 1 94 208"
+  );
 }

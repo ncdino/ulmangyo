@@ -1,20 +1,17 @@
-// 1. 사진 압축
-
 "use client";
 
-import React, { useRef, useState } from "react";
-import useCameraStream from "@/hooks/useCameraStream";
-import useImageAnalysis from "@/hooks/useImageAnalysis";
+import React, { useState, useRef, useEffect } from "react";
 import useStore from "@/app/store/zustand/store";
+import Esl from "../components/Card/esl";
+import Checked from "../components/Card/Checked";
 
-export default function PhotoAnalysis() {
-  const canvasRef = useRef(null);
-  const { videoRef, streamError } = useCameraStream();
-  const { loading, analyzeAndSave } = useImageAnalysis();
+export default function SelectPage() {
   const { detectedTexts, addCartItem, resetDetectedTexts } = useStore();
+  const [selectedCandidates, setSelectedCandidates] = useState({});
+  const [isCheckVisible, setIsCheckVisible] = useState(false);
 
-  const [selectedCandidates, setSelectedCandidates] = useState({}); 
   const [currentStep, setCurrentStep] = useState("name"); // "name" -> "price" -> "done"
+  const timerRef = useRef(null);
 
   const handleSelect = (id, type, value) => {
     setSelectedCandidates((prev) => ({
@@ -27,12 +24,30 @@ export default function PhotoAnalysis() {
   };
 
   const handleNextStep = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    setIsCheckVisible(true);
+
+    timerRef.current = setTimeout(() => {
+      setIsCheckVisible(false);
+    }, 2000);
+
     if (currentStep === "name") {
       setCurrentStep("price");
     } else if (currentStep === "price") {
       setCurrentStep("done");
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
 
   const handleAddToCart = (id) => {
     const selected = selectedCandidates[id];
@@ -42,7 +57,8 @@ export default function PhotoAnalysis() {
         ...prev,
         [id]: { name: null, price: null },
       }));
-      alert("상품이 카트에 추가되었습니다!");
+      setIsCheckVisible(true);
+      alert("카트에 추가되었습니다!");
       resetDetectedTexts();
       setCurrentStep("name"); // 초기화 후 다시 상품명 단계로 이동
     } else {
@@ -50,51 +66,15 @@ export default function PhotoAnalysis() {
     }
   };
 
-  const captureImage = async () => {
-    if (canvasRef.current && videoRef.current) {
-      const canvas = canvasRef.current;
-      const video = videoRef.current;
-
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-      const blob = await new Promise((resolve) => {
-        canvas.toBlob(resolve, "image/jpeg");
-      });
-
-      if (blob) {
-        analyzeAndSave(blob);
-      } else {
-        console.error("Failed to create blob");
-      }
-    }
-  };
-
-  if (streamError) {
-    return <div>카메라 접근 에러: {streamError.message}</div>;
-  }
-
   return (
-    <div className="container">
-      <video
-        ref={videoRef}
-        autoPlay
-        playsInline
-        style={{ width: "100%", height: "auto", border: "1px solid #ccc" }}
-      />
-      <button
-        onClick={captureImage}
-        disabled={loading}
-        className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
-      >
-        {loading ? "글자분석중" : "상품명 캡처"}
-      </button>
-      <canvas ref={canvasRef} style={{ display: "none" }} />
-
+    <div className="relative container h-screen">
       {detectedTexts.length > 0 ? (
         <div>
+          {isCheckVisible && (
+            <div className="absolute top-1/2 left-1/2 bottom-1/2 -translate-x-1/2 -translate-y-1/2 z-[30]">
+              <Checked />
+            </div>
+          )}
           <ul>
             {detectedTexts.map((item) => (
               <div key={item.id}>
@@ -182,12 +162,20 @@ export default function PhotoAnalysis() {
 
                 {/* 카트 추가 단계 */}
                 {currentStep === "done" && (
-                  <button
-                    onClick={() => handleAddToCart(item.id)}
-                    className="mt-2 bg-green-500 text-white px-3 py-1 rounded"
-                  >
-                    카트에 추가
-                  </button>
+                  <div>
+                    <Esl
+                      key={item.id}
+                      productName={selectedCandidates[item.id]?.name}
+                      productPrice={selectedCandidates[item.id]?.price}
+                    />
+                    이거 맞죠?
+                    <button
+                      onClick={() => handleAddToCart(item.id)}
+                      className="mt-2 bg-green-500 text-white px-3 py-1 rounded"
+                    >
+                      카트에 추가
+                    </button>
+                  </div>
                 )}
               </div>
             ))}
