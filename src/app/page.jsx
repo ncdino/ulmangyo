@@ -1,10 +1,10 @@
-import Esl from "./components/Card/esl";
+import EslLayout from "./components/Card/EslLayout";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-      <Esl />
+      <EslLayout />
       <Link href="/capture">사진</Link>
     </>
   );

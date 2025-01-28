@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import useStore from "@/app/store/zustand/store";
-import Esl from "../components/Card/esl";
+import EslLayout from "../components/Card/EslLayout";
 import Checked from "../components/Card/Checked";
 
 export default function SelectPage() {
@@ -163,7 +163,7 @@ export default function SelectPage() {
                 {/* 카트 추가 단계 */}
                 {currentStep === "done" && (
                   <div>
-                    <Esl
+                    <EslLayout
                       key={item.id}
                       productName={selectedCandidates[item.id]?.name}
                       productPrice={selectedCandidates[item.id]?.price}
