@@ -1,5 +1,4 @@
-import Esl from "./components/Card/ESL";
-import PhotoAnalysis from "./components/section/PhotoAnalaysis";
+import Esl from "./components/Card/esl";
 import Link from "next/link";
 
 export default function Home() {
