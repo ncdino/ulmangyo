@@ -44,7 +44,7 @@ export default function CapturePage() {
     <div className="bg-[#E2E0DF] px-2 py-1">
       {/* <Header /> */}
       <div className="relative p-2 font-pretendard h-screen">
-        <div className="relative w-full h-1/6 aspect-9/16 inset-0 border border-gray-300 rounded-2xl">
+        <div className="relative w-full h-1/5 aspect-9/16 inset-0 border border-gray-300 rounded-2xl">
           <video
             ref={videoRef}
             autoPlay
