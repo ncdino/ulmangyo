@@ -42,9 +42,9 @@ export default function CapturePage() {
   }
 
   return (
-    <div className="bg-[#E2E0DF] ">
+    <div className="bg-[#E2E0DF] h-screen">
       <Header />
-      <div className="relative p-2 font-pretendard h-screen px-2">
+      <div className="relative p-2 font-pretendard px-2">
         <div className="relative w-full h-1/4 aspect-9/16 inset-0 border border-gray-300 rounded-2xl">
           <video
             ref={videoRef}
@@ -59,7 +59,7 @@ export default function CapturePage() {
         <button
           onClick={captureImage}
           disabled={loading}
-          className="absolute bg-transparent text-white px-4 py-2 rounded-full bottom-0 -translate-x-1/2 left-1/2 -translate-y-1/2"
+          className="absolute bg-transparent text-white px-4 py-2 rounded-full bottom-6 -translate-x-1/2 left-1/2 -translate-y-1/2"
         >
           <Image src={CameraImg} alt="Camera Img" className="size-28" />
         </button>
