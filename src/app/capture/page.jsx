@@ -4,10 +4,8 @@ import React, { useRef } from "react";
 import { useRouter } from "next/navigation";
 import useCameraStream from "@/hooks/useCameraStream";
 import useImageAnalysis from "@/hooks/useImageAnalysis";
-import Header from "../components/section/Header";
 import Image from "next/image";
 import CameraImg from "../../../public/camera.png";
-import Esl from "../components/Card/esl";
 
 export default function CapturePage() {
   const router = useRouter();
