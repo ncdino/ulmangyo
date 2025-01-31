@@ -99,8 +99,10 @@ function useImageAnalysis() {
       analyzedData.sort((a, b) => b.width - a.width);
 
       console.log("Final priceCandidateList1:", priceCandidateList);
+
+      // productName 개수
       const productNameCandidateList = analyzedData
-        .slice(0, 3)
+        .slice(0, 4)
         .map(({ text, boundingBox, width }) => ({ text, boundingBox, width }));
 
       //   console.log("Final priceCandidateList2:", priceCandidateList);

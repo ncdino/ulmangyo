@@ -1,21 +1,24 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import useCameraStream from "@/hooks/useCameraStream";
 import useImageAnalysis from "@/hooks/useImageAnalysis";
 import Image from "next/image";
 import CameraImg from "../../../public/camera.png";
-import eslHuman1 from "../../../public/eslHuman.webp";
-import eslHuman2 from "../../../public/eslHuman2.webp";
 import Header from "../components/section/Header";
-import HalfCard from "../components/Card/HalfCard";
+import useStore from "@/app/store/zustand/store";
 
 export default function CapturePage() {
   const router = useRouter();
   const canvasRef = useRef(null);
   const { videoRef, streamError } = useCameraStream();
   const { loading, analyzeAndSave } = useImageAnalysis();
+  const { resetDetectedTexts } = useStore();
+
+  useEffect(() => {
+    resetDetectedTexts();
+  }, []);
 
   const captureImage = async () => {
     if (canvasRef.current && videoRef.current) {
@@ -45,9 +48,9 @@ export default function CapturePage() {
   }
 
   return (
-    <div className="bg-[#E2E0DF] h-screen">
+    <div className="h-screen">
       <Header>
-        <div className="">
+        <div>
           가격표에 맞춰서 &nbsp;
           <span className="font-extrabold text-white text-xl">카메라📸</span>를
           눌러보세요 !

@@ -23,13 +23,13 @@ const useStore = create(
       addCartItem: (id, name, price) =>
         set((state) => {
           const existingItem = state.cartItems.find(
-            (item) => item.id === id && item.name === name
+            (item) => item.name === name && item.price === price
           );
 
           if (existingItem) {
             return {
               cartItems: state.cartItems.map((item) =>
-                item.id === id && item.name === name
+                item.name === name && item.price === price
                   ? { ...item, quantity: item.quantity + 1 }
                   : item
               ),

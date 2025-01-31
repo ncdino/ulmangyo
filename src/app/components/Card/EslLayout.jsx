@@ -1,7 +1,13 @@
-export default function EslLayout({ productName = "제품명", productPrice = 0 }) {
-    return (
-      <div className="font-galmuri relative border-8 border-l-15 border-white rounded-xl bg-gray-400 text-black w-80 h-32 shadow-lg">
-        <div className="border-b border-black px-1 py-1">{productName}</div>
+export default function EslLayout({
+  productName = "제품명",
+  productPrice = 0,
+}) {
+  return (
+    <div className="mt-10 justify-center flex">
+      <div className="font-galmuri relative border-8 border-l-15 border-white rounded-xl bg-gray-400 text-black w-80 h-32 shadow-lg ">
+        <div className="border-b border-black px-1 py-1 font-semibold">
+          {productName}
+        </div>
         <div className="grid grid-cols-3 grid-rows-2">
           <div className="tracking-tighter justify-center">
             <div className="col-span-1 inline-flex">
@@ -23,6 +29,6 @@ export default function EslLayout({ productName = "제품명", productPrice = 0 
           </div>
         </div>
       </div>
-    );
-  }
-  
+    </div>
+  );
+}

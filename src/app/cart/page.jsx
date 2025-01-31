@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import useStore from "@/app/store/zustand/store";
+import Header from "../components/section/Header";
 
 const Cart = () => {
   const cartItems = useStore((state) => state.cartItems);
@@ -18,7 +19,11 @@ const Cart = () => {
 
   // 총 가격 계산
   const totalPrice = cartItems.reduce((total, item) => {
-    const price = Number(item.price.replace(/,/g, ""));
+    const price =
+      item.price && typeof item.price === "string"
+        ? Number(item.price.replace(/,/g, ""))
+        : 0;
+
     const discountRate = discounts[item.id] || 0; //기본값 0
     const discountedPrice = price * (1 - discountRate / 100);
     return total + discountedPrice * item.quantity;
@@ -52,8 +57,9 @@ const Cart = () => {
   }
 
   return (
-    <div className="p-4">
-      <h2 className="text-lg font-bold mb-4">카트</h2>
+    <div className="">
+      <Header>현재 고객님의 장바구니 속 제품입니다😊</Header>
+      <h2 className="text-lg font-bold mb-4 p-4">카트</h2>
       <ul>
         {cartItems.map((item) => (
           <li key={item.id} className="mb-2">

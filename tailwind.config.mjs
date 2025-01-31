@@ -20,6 +20,9 @@ module.exports = {
       aspectRatio: {
         "9/16": "9 / 16",
       },
+      wordBreak: {
+        "korean-wrap": "keep-all",
+      },
       backgroundImage: {
         "main-background": "url('/bg1.webp')",
         "first-halfcard-background": "url('/eslHuman.webp')",
@@ -28,6 +31,7 @@ module.exports = {
       fontFamily: {
         pretendard: ["var(--font-pretendard)", "sans-serif"],
         galmuri: ["var(--font-galmuri)", "sans-serif"],
+        paybooc: ["var(--font-paybooc)", "sans-serif"],
       },
       borderRadius: {
         "4xl": "2rem",
@@ -64,6 +68,6 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/aspect-ratio")],
+  plugins: [],
   darkMode: false,
 };
