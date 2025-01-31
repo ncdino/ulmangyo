@@ -19,7 +19,7 @@ export default function MainSummary() {
         ? Number(item.price.replace(/,/g, ""))
         : 0;
 
-    return price * item.quantity;
+    return total + price * item.quantity;
   }, 0);
 
   const sortedCartItems = [...cartItems].sort((a, b) => {
