@@ -2,6 +2,7 @@
 
 import useStore from "@/app/store/zustand/store";
 import MainPageCard from "../Card/MainPageCard";
+import AnimatedCounter from "../Motion/AnimatedCounter";
 
 export default function MainSummary() {
   const cartItems = useStore((state) => state.cartItems);
@@ -43,7 +44,12 @@ export default function MainSummary() {
               <span className="text-base text-stone-400">∨</span>
             </div>
             <div className=" text-center font-medium text-4xl">
-              {totalPrice.toLocaleString()} 원
+              <AnimatedCounter
+                from={0}
+                to={totalPrice}
+                duration={2.5}
+                currency="원"
+              />
             </div>
           </MainPageCard>
         </div>
@@ -57,7 +63,7 @@ export default function MainSummary() {
               {mostExpensiveItem ? (
                 <div>
                   <p className="text-base">{mostExpensiveItem.name} / </p>
-                  <p className="text-sm">{mostExpensiveItem.price} 원</p>
+                  <p className="text-sm">{mostExpensiveItem.price} 원 / 개당</p>
                 </div>
               ) : (
                 <span className="text-sm">장바구니가 비어있습니다</span>
@@ -68,8 +74,13 @@ export default function MainSummary() {
             <div className="text-sm text-center font-light mb-1">
               상품 개수 <span className="text-base text-stone-400">∨</span>
             </div>
-            <div className=" text-center font-medium text-2xl">
-              {totalQuantity} 개
+            <div className="text-center font-medium text-2xl">
+              <AnimatedCounter
+                from={0}
+                to={totalQuantity}
+                duration={2.5}
+                currency="개"
+              />
             </div>
           </MainPageCard>
         </div>

@@ -10,14 +10,14 @@ export default function Home() {
           <h1 className="font-galmuri text-xl tracking-wide">
             얼만교&nbsp;
             <span className="font-pretendard text-sm font-light tracking-tighter">
-              : 핸드폰 속 오프라인 장바구니
+              : 온라인 속 오프라인 장바구니
             </span>
           </h1>
         </Link>
       </Header>
       <MainSummary />
 
-      <button className="absolute bottom-5 -translate-x-1/2 left-1/2 w-[90%] bg-[#FF6500] text-center text-white p-4 rounded-2xl shadow-2xl">
+      <button className="absolute bottom-28 -translate-x-1/2 left-1/2 w-[90%] bg-[#FF6500] text-center text-white p-4 rounded-2xl shadow-2xl">
         <Link href="/capture" className="font-pretendard text-xl">
           시작하기
         </Link>
