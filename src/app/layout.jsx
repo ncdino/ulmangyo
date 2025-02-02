@@ -46,6 +46,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <head>
+        <meta
+          name="google-site-verification"
+          content="Nlo-8Deet69wIipax_hMm1Y_91hAPtCeFGOhudPEHg4"
+        />
         <meta name="theme-color" content="#232526" />
       </head>
       <body
