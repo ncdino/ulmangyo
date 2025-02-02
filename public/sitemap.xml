@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://ulmangyo.vercel.app/</loc>
+  <lastmod>2025-02-02T18:15:17+00:00</lastmod>
+</url>
+<url>
+  <loc>https://ulmangyo.vercel.app/capture</loc>
+  <lastmod>2025-02-02T18:15:17+00:00</lastmod>
+</url>
+<url>
+  <loc>https://ulmangyo.vercel.app/cart</loc>
+  <lastmod>2025-02-02T18:15:17+00:00</lastmod>
+</url>
+<url>
+  <loc>https://ulmangyo.vercel.app/select</loc>
+  <lastmod>2025-02-02T18:15:17+00:00</lastmod>
+</url>
+
+</urlset>

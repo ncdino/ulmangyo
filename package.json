@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -16,8 +17,10 @@
     "axios": "^1.7.9",
     "framer-motion": "^12.0.5",
     "next": "15.1.5",
+    "next-sitemap": "^4.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "sharp": "^0.33.5",
     "tailwind-clip-path": "^1.0.0",
     "tailwind-merge": "^2.6.0",
     "uuid": "^11.0.5",
