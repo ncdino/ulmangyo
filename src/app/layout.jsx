@@ -50,6 +50,10 @@ export default function RootLayout({ children }) {
           name="google-site-verification"
           content="Nlo-8Deet69wIipax_hMm1Y_91hAPtCeFGOhudPEHg4"
         />
+        <meta
+          name="naver-site-verification"
+          content="1401c02025006aa1b7c9ef4118784760ed44264b"
+        />
         <meta name="theme-color" content="#232526" />
       </head>
       <body
