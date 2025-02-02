@@ -20,7 +20,7 @@ export default function Header({ children, className }) {
   return (
     <div
       className={twMerge(
-        `font-pretendard font-bold tracking-tighter bg-gradient-to-r from-[#000000] to-[#434343] backdrop-blur top-0 sticky z- py-2`,
+        `font-pretendard font-bold tracking-tighter bg-gradient-to-r from-[#000000] to-[#434343] backdrop-blur top-0 sticky z-50 py-2`,
         className
       )}
     >

@@ -2,6 +2,7 @@
 
 import { animate, motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 export default function AnimatedCounter({
   from = 0,
@@ -13,6 +14,7 @@ export default function AnimatedCounter({
   once = true,
   animationType = "smooth",
   currency = "",
+  className,
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once });
@@ -58,7 +60,7 @@ export default function AnimatedCounter({
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      className="tabular-nums select-none"
+      className={twMerge(`tabular-nums select-none`, className)}
       aria-label={`Counter ends at ${to}`}
     >
       {parseInt(displayValue).toLocaleString()} {currency}

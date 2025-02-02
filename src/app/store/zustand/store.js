@@ -6,6 +6,14 @@ const useStore = create(
     (set) => ({
       detectedTexts: [],
       cartItems: [],
+
+      // 예산 //
+      budget: 0,
+      isModalOpen: true,
+      closeModal: () => set({ isModalOpen: false }),
+      setBudget: (newBudget) => set({ budget: newBudget }),
+      // 예산 //
+
       addDetectedText: (id, texts, productNameCandidates, priceCandidates) => {
         const newDetectedText = {
           id,
@@ -36,7 +44,17 @@ const useStore = create(
             };
           } else {
             return {
-              cartItems: [...state.cartItems, { id, name, price, quantity: 1 }],
+              cartItems: [
+                ...state.cartItems,
+                {
+                  id,
+                  name,
+                  price,
+                  quantity: 1,
+                  discount: 0,
+                  discountPrice: price,
+                },
+              ],
             };
           }
         }),
@@ -54,12 +72,80 @@ const useStore = create(
             (item) => !(item.id === id && item.name === name)
           ),
         })),
+
+      updateCartItemDiscount: (id, discountValue) =>
+        set((state) => ({
+          cartItems: state.cartItems.map((item) =>
+            item.id === id
+              ? {
+                  ...item,
+                  discountPrice: Math.round(
+                    (parseInt(item.price.replace(/,/g, "")) *
+                      (100 - discountValue)) /
+                      100
+                  ),
+                }
+              : item
+          ),
+        })),
+
+      modifyProductName: (id, newProductName) => {
+        set((state) => ({
+          cartItems: state.cartItems.map((item) =>
+            item.id === id
+              ? {
+                  ...item,
+                  name: newProductName,
+                }
+              : item
+          ),
+        }));
+      },
+
+      // updateCartItemDiscountPrice: (id) =>
+      //   set((state) => ({
+      //     cartItems: state.cartItems.map((item) => {
+      //       if (item.id === id) {
+      //         const originalPrice =
+      //           typeof item.price === "string"
+      //             ? parseInt(item.price.replace(/,/g, ""), 10)
+      //             : item.price;
+
+      //         const discount = item.discount || 0;
+      //         const discountPrice = Math.round(
+      //           (originalPrice * (100 - discount)) / 100
+      //         );
+
+      //         return { ...item, discountPrice };
+      //       }
+      //       return item;
+      //     }),
+      //   })),
+
+      //   getTotalPrice: () =>
+      //     get().cartItems.reduce((total, item) => {
+      //       const originalPrice =
+      //         typeof item.price === "string"
+      //           ? parseInt(item.price.replace(/,/g, ""), 10)
+      //           : item.price;
+
+      //       const discount = item.discount || 0;
+      //       const finalPrice = Math.round(
+      //         (originalPrice * (100 - discount)) / 100
+      //       );
+
+      //       return total + finalPrice * item.quantity;
+      //     }, 0),
+
       getTotalPrice: () =>
-        get().cartItems.reduce(
-          (total, item) => total + item.price * item.quantity,
-          0
-        ), // set 제거 후 get()으로 값 반환
+        get().cartItems.reduce((item) => {
+          // 이미 discountPrice가 존재하면 그것을 사용
+          const finalPrice = item.discountPrice || 0; // discountPrice가 없다면 0으로 처리
+
+          return finalPrice * item.quantity;
+        }, 0),
     }),
+
     {
       name: "detected-texts",
       storage: {

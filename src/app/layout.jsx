@@ -1,6 +1,6 @@
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
-import QueryClient from "./store/queryClient/queryClient";
+
 import localFont from "next/font/local";
 
 const galMuri = localFont({
@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${pretendard.variable} ${geistMono.variable} ${galMuri.variable} ${paybook.variable} antialiased overflow-x-clip`}
       >
-        <QueryClient>{children}</QueryClient>
+        {children}
       </body>
     </html>
   );

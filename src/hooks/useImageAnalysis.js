@@ -82,19 +82,20 @@ function useImageAnalysis() {
 
             analyzedData.push({ text, boundingBox, area, width });
 
-            const isPriceFormat = /\d{1,3}(?:,?\d{3})*/g.test(text);
+            const isPriceFormat = /^\d{1,3}(?:[.,]?\d{3})*(?:[.,]\d+)?$/g.test(
+              text
+            );
             const hasNonNumericChars = /[^0-9,]/g.test(text);
 
             if (isPriceFormat && !hasNonNumericChars) {
               priceCandidateList.push({ text, boundingBox, area });
             }
-            
-      // console.log("Final priceCandidateList3:", priceCandidateList);
+
+            // console.log("Final priceCandidateList3:", priceCandidateList);
           });
         });
       });
       //상품명
-
 
       analyzedData.sort((a, b) => b.width - a.width);
 
@@ -102,7 +103,7 @@ function useImageAnalysis() {
 
       // productName 개수
       const productNameCandidateList = analyzedData
-        .slice(0, 4)
+        .slice(0, 6)
         .map(({ text, boundingBox, width }) => ({ text, boundingBox, width }));
 
       //   console.log("Final priceCandidateList2:", priceCandidateList);

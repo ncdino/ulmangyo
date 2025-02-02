@@ -53,9 +53,9 @@ module.exports = {
         xl: "1440px",
       },
       colors: {
-        primary: "#FF979B",
+        primary: "#31363F",
         orange: "#fd7702",
-        secondary: "#19547b",
+        btnHighlight: "#FF6500",
       },
       animation: {
         fadeInUp: "fadeInUp 0.8s ease-out forwards",

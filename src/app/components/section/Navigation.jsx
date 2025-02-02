@@ -1,4 +1,3 @@
-// Navigation.js
 import Link from "next/link";
 import MenuListCard from "../Card/MenuListCard";
 import MainPageCard from "../Card/MainPageCard";
@@ -6,12 +5,12 @@ import MainPageCard from "../Card/MainPageCard";
 export default function Navigation() {
   return (
     <div className="flex flex-col gap-4 mt-2">
-      <MainPageCard className="bg-white text-white col-span-3">
+      <MainPageCard className="text-white col-span-3">
         <nav>
           <ul className="flex flex-col mt-4 mb-4">
             <li>
               <Link href="/">
-                <MenuListCard menuTitle={"처음 화면으로 돌아가기 ↩️"} />
+                <MenuListCard menuTitle={"요약해서 보기 ↩️"} />
               </Link>
             </li>
             <li>

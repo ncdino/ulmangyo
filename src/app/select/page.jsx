@@ -1,15 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import ChartImg from "../../../public/Chart.png";
 import React, { useState, useRef, useEffect } from "react";
 import useStore from "@/app/store/zustand/store";
 import EslLayout from "../components/Card/EslLayout";
 import Checked from "../components/PopUpIcon/Checked";
-import ItemListCard from "../components/Card/ItemListCard";
 import useCountDown from "@/hooks/useCountDown";
 import CandidateList from "../components/section/CandidateList";
 import Header from "../components/section/Header";
 import AddComplete from "../components/PopUpIcon/AddComplete";
+import ErrorPage from "../components/section/ErrorPage";
 
 export default function SelectPage() {
   const { detectedTexts, addCartItem, resetDetectedTexts } = useStore();
@@ -111,11 +111,12 @@ export default function SelectPage() {
                     <div>
                       <Header>
                         <span>
-                          <span className="text-xl font-extrabold">🧾</span>
-                          <span className="text-xl font-extrabold">
-                            사진 속 상품명
+                          <span className="text-lg font-extrabold">
+                            💡사진의 구도&nbsp;
                           </span>
-                          으로 인식된 문자들입니다.
+                          <span className="text-base font-base">
+                            에 따라 결과가 바뀔 수도 있어요.
+                          </span>
                         </span>
                       </Header>
                       <CandidateList
@@ -139,7 +140,7 @@ export default function SelectPage() {
                           <span className="text-xl font-extrabold">
                             {selectedCandidates[item.id]?.name}의 가격
                           </span>
-                          으로 인식된 숫자입니다.
+                          으로 인식된 결과에요.
                         </span>
                       </Header>
                       <CandidateList
@@ -171,6 +172,7 @@ export default function SelectPage() {
                       )}
                     </Header>
                     <div className="flex flex-col items-center justify-center">
+                      {/* 가격표 UI */}
                       <EslLayout
                         key={item.id}
                         productName={selectedCandidates[item.id]?.name}
@@ -179,6 +181,7 @@ export default function SelectPage() {
                       />
                     </div>
                     <div className="text-4xl font-bold text-gray-800">
+                      {/* 카운트 다운 진행시 Icon  */}
                       {countdown > 0 && (
                         <div className="absolute top-1/2 left-1/2 bottom-1/3 -translate-x-1/2 -translate-y-1/2 z-[30]">
                           <AddComplete />
@@ -192,7 +195,12 @@ export default function SelectPage() {
           </ul>
         </div>
       ) : (
-        <p>분석 중이거나 결과가 없습니다.</p>
+        <ErrorPage
+          contentTitle="분석 중이거나 결과가 없습니다"
+          src={ChartImg}
+          alt="no data image"
+          headerTitle="분석 중이거나 결과가 없습니다"
+        />
       )}
     </div>
   );
