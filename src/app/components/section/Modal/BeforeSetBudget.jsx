@@ -27,10 +27,6 @@ export default function BeforeSetBudget({
         isOpen ? "block" : "hidden"
       }`}
     >
-      <title>
-        오프라인 마트에는 없는 마트 현재 내 카트 속 물품 현황, "얼만교"로
-        가격표를 스캔해서 불필요한 지출을 방지해보세요.
-      </title>
       <div className="bg-zinc-800 p-4 rounded-2xl mx-2 w-full h-64">
         <h1 className=" tracking-tighter text-xl mb-4 text-zinc-100">
           <p className="text-2xl mb-2">💡</p>
