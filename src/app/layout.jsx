@@ -1,6 +1,5 @@
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
-
 import localFont from "next/font/local";
 
 const galMuri = localFont({
@@ -54,6 +53,9 @@ export default function RootLayout({ children }) {
           name="naver-site-verification"
           content="1401c02025006aa1b7c9ef4118784760ed44264b"
         />
+        <link rel="icon" href="./favicon.ico" />
+        <link rel="apple-touch-icon" href="./favicon.ico" />
+
         <meta name="theme-color" content="#232526" />
       </head>
       <body
