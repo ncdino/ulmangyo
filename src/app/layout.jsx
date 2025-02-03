@@ -36,7 +36,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "오프라인 마트 장바구니 - 얼만교",
+  title: "오프라인 마트 장바구니 스캔 앱 - 얼만교",
   description:
     "오프라인에서 확인하기 힘든 마트 장바구니를 핸드폰으로 확인해보세요.",
 };
@@ -45,6 +45,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <head>
+        <title>오프라인 마트 장바구니 스캔 앱 - 얼만교</title>
         <meta
           name="google-site-verification"
           content="Nlo-8Deet69wIipax_hMm1Y_91hAPtCeFGOhudPEHg4"
@@ -55,7 +56,6 @@ export default function RootLayout({ children }) {
         />
         <link rel="icon" href="./favicon.ico" />
         <link rel="apple-touch-icon" href="./favicon.ico" />
-
         <meta name="theme-color" content="#232526" />
       </head>
       <body
