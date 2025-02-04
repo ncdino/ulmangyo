@@ -33,15 +33,18 @@ export default function Navigation() {
       <MainPageCard className="text-white col-span-3">
         <nav>
           {!session && (
-            <button
-              className="text-white text-left p-4"
-              onClick={handleLoginModalVisible}
-            >
-              로그인 / 회원가입
-            </button>
+            <div className="flex justify-between items-center">
+              <span />
+              <button
+                className="text-white bg-btnHighlight text-left py-2 px-4 rounded-xl font-medium"
+                onClick={handleLoginModalVisible}
+              >
+                로그인 / 회원가입
+              </button>
+            </div>
           )}
           {session && (
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
               <span>{session.user.name}님, 환영합니다😊</span>
               <button
                 onClick={() => signOut()}
