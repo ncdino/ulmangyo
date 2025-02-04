@@ -1,6 +1,9 @@
+"use client";
+
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
+import { SessionProvider } from "next-auth/react";
 
 const galMuri = localFont({
   src: [
@@ -35,13 +38,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "오프라인 마트 장바구니 스캔 앱 - 얼만교",
-  description:
-    "오프라인에서 확인하기 힘든 마트 장바구니를 핸드폰으로 확인해보세요.",
-};
+// export const metadata = {
+//   title: "오프라인 마트 가격표 스캔 앱 - 얼만교",
+//   description:
+//     "오프라인에서 확인하기 힘든 마트 장바구니를 핸드폰으로 확인해보세요.",
+// };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, session }) {
   return (
     <html lang="ko">
       <head>
@@ -61,7 +64,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${pretendard.variable} ${geistMono.variable} ${galMuri.variable} ${paybook.variable} antialiased overflow-x-clip`}
       >
-        {children}
+        <SessionProvider session={session}>{children}</SessionProvider>
       </body>
     </html>
   );

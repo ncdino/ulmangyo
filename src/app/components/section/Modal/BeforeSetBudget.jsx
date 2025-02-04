@@ -23,7 +23,7 @@ export default function BeforeSetBudget({
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center bg-black/50 ${
+      className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 ${
         isOpen ? "block" : "hidden"
       }`}
     >
