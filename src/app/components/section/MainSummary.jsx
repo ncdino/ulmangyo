@@ -33,6 +33,13 @@ export default function MainSummary() {
     return total + price * item.quantity;
   }, 0);
 
+  // 사용량 % 정의
+
+  const usagePercent = (
+    (parseInt(totalPrice) / parseInt(budget)) *
+    100
+  ).toFixed(0);
+
   const sortedCartItems = [...cartItems].sort((a, b) => {
     const priceA = parseFloat(a.price.replace(/,/g, ""));
     const priceB = parseFloat(b.price.replace(/,/g, ""));
@@ -89,7 +96,9 @@ export default function MainSummary() {
                   size={60}
                 />
                 <span className="absolute -right-1 -top-2 w-6 h-6 border border-btnHighlight bg-btnHighlight rounded-full text-sm text-center font-semibold">
-                  {((parseInt(totalPrice) / parseInt(budget)) * 100).toFixed(0)}
+                  {isNaN(usagePercent) || !isFinite(usagePercent)
+                    ? 0
+                    : usagePercent}
                 </span>
               </div>
             </MainPageCard>
