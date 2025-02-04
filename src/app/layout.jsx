@@ -51,7 +51,7 @@ export default function RootLayout({ children, session }) {
         <title>오프라인 마트 장바구니 스캔 앱 - 얼만교</title>
         <meta
           name="google-site-verification"
-          content="Nlo-8Deet69wIipax_hMm1Y_91hAPtCeFGOhudPEHg4"
+          content="YtFrqHuGrFGNNudgWc6trzo9L3AW_01As7Jit8kUCzs"
         />
         <meta
           name="naver-site-verification"
