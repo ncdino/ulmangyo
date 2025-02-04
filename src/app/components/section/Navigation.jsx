@@ -1,13 +1,58 @@
+"use client";
+
 import Link from "next/link";
 import MenuListCard from "../Card/MenuListCard";
 import MainPageCard from "../Card/MainPageCard";
+import { useState } from "react";
+import { useSession, signOut, signIn } from "next-auth/react";
+import Modal from "./Modal/Modal";
+import GoogleSignInButton from "../Button/GoogleSignInButton";
+import OAuthLoginButton from "../Button/OAuthLoginButton";
 
 export default function Navigation() {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const { data: session } = useSession();
+
+  const handleLoginModalVisible = () => {
+    setIsLoginModalOpen(true);
+  };
   return (
-    <div className="flex flex-col gap-4 mt-2">
+    <div className="flex flex-col mt-2">
+      {isLoginModalOpen && (
+        <Modal
+          isOpen={isLoginModalOpen}
+          onClose={() => setIsLoginModalOpen(false)}
+          title="복잡한 절차 없이 3초만에 시작해요"
+        >
+          <div className="flex flex-col gap-3">
+            <GoogleSignInButton onClick={() => signIn("google")} />
+            <OAuthLoginButton onClick={() => signIn("kakao")} />
+          </div>
+        </Modal>
+      )}
       <MainPageCard className="text-white col-span-3">
         <nav>
-          <ul className="flex flex-col mt-4 mb-4">
+          {!session && (
+            <button
+              className="text-white text-left p-4"
+              onClick={handleLoginModalVisible}
+            >
+              로그인 / 회원가입
+            </button>
+          )}
+          {session && (
+            <div className="flex justify-between">
+              <span>{session.user.name}님, 환영합니다😊</span>
+              <button
+                onClick={() => signOut()}
+                className="text-white bg-btnHighlight text-left py-2 px-4 rounded-xl font-medium"
+              >
+                로그아웃
+              </button>
+            </div>
+          )}
+
+          <ul className="flex flex-col mb-4 gap-1">
             <li>
               <Link href="/">
                 <MenuListCard menuTitle={"요약해서 보기 ↩️"} />

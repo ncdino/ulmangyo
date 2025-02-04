@@ -41,8 +41,6 @@ export default function MainSummary() {
   });
 
   const mostExpensiveItem = sortedCartItems[sortedCartItems.length - 1];
-  //   const mostExpensivePrice = parseFloat(mostExpensiveItem.price.replace(/,/g, ''));
-  //   const mostExpensiveName = mostExpensiveItem.name;
 
   return (
     <div className="container mt-10 font-pretendard tracking-tighter">
@@ -77,8 +75,8 @@ export default function MainSummary() {
               }
             >
               <div>
-                <div className="text-sm text-center font-light mb-1">
-                  예산 사용률{" "}
+                <div className="relative text-sm text-center font-light mb-1">
+                  예산 사용률
                   <span className="text-base text-stone-400">∨</span>
                 </div>
                 <GaugeChart
@@ -90,6 +88,9 @@ export default function MainSummary() {
                   className="w-50 h-50 md:w-100 md:h-100 lg:w-200 lg:h-200"
                   size={60}
                 />
+                <span className="absolute -right-1 -top-2 w-6 h-6 border border-btnHighlight bg-btnHighlight rounded-full text-sm text-center font-semibold">
+                  {((parseInt(totalPrice) / parseInt(budget)) * 100).toFixed(0)}
+                </span>
               </div>
             </MainPageCard>
             <MainPageCard
