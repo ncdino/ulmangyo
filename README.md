@@ -1,6 +1,6 @@
 
 <div align="center">
-  <h1>얼만교 (마트 장보기 예산 관리 앱)</h1>
+  <h1>얼만교</h1>
 	<img src="https://ewqfysoxkdbxiitjyrgr.supabase.co/storage/v1/object/public/portfolio/Screenshot/ulmangyoScreen.png" alt="얼만교 프로젝트 대표 이미지" width="400px">
   <p>오프라인 마트에서 장 볼 때, 카트 속 물품들의 가격과 총액을 실시간으로 보여주어 예산 걱정을 덜어주는 스마트한 장바구니 앱입니다.</p>
   
