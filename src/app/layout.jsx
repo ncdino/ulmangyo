@@ -33,11 +33,6 @@ const pretendard = localFont({
   variable: "--font-pretendard",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 // export const metadata = {
 //   title: "오프라인 마트 가격표 스캔 앱 - 얼만교",
 //   description:
@@ -57,12 +52,13 @@ export default function RootLayout({ children, session }) {
           name="naver-site-verification"
           content="1401c02025006aa1b7c9ef4118784760ed44264b"
         />
-        <link rel="icon" href="./favicon.ico" />
-        <link rel="apple-touch-icon" href="./favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <link rel="icon" href="/icons/android-chrome-512x512.png" />
         <meta name="theme-color" content="#232526" />
       </head>
       <body
-        className={`${pretendard.variable} ${geistMono.variable} ${galMuri.variable} ${paybook.variable} antialiased overflow-x-clip`}
+        className={`${pretendard.variable} ${galMuri.variable} ${paybook.variable} antialiased overflow-x-clip`}
       >
         <SessionProvider session={session}>{children}</SessionProvider>
       </body>

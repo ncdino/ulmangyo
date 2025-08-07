@@ -18,7 +18,6 @@ function useCameraStream() {
         }
       } catch (err) {
         console.error("Error accessing camera:", err);
-        d;
         setStreamError(err);
       }
     }
