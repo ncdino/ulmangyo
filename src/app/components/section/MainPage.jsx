@@ -4,7 +4,7 @@ import MainSummary from "./MainSummary";
 
 export default function MainPage() {
   return (
-    <div className="h-screen relative bg-primary">
+    <div className="h-screen max-w-xl mx-auto relative bg-primary">
       {/* 헤더 */}
       <Header>
         <Link href="/">
@@ -18,7 +18,6 @@ export default function MainPage() {
       </Header>
       {/* 요약 */}
       <MainSummary />
-
     </div>
   );
 }
