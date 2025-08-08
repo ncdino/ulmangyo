@@ -4,8 +4,8 @@ export default function Modal({ isOpen, onClose, title, children }) {
   if (!isOpen) return null;
 
   return (
-    <div className="font-pretendard fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-primary p-6 rounded-3xl shadow-lg w-80">
+    <div className="font-pretendard fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 px-4">
+      <div className="bg-primary p-6 rounded-3xl shadow-lg w-80 max-w-full my-8">
         {title && (
           <h2 className="tracking-tighter text-xl font-bold mb-4 text-white">
             {title}

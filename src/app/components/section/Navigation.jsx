@@ -19,18 +19,20 @@ export default function Navigation() {
   return (
     <div className="flex flex-col mt-2">
       {isLoginModalOpen && (
-        <Modal
-          isOpen={isLoginModalOpen}
-          onClose={() => setIsLoginModalOpen(false)}
-          title="복잡한 절차 없이 3초만에 시작해요"
-        >
-          <div className="flex flex-col gap-3">
-            <GoogleSignInButton onClick={() => signIn("google")} />
-            <OAuthLoginButton onClick={() => signIn("kakao")} />
-          </div>
-        </Modal>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-full">
+          <Modal
+            isOpen={isLoginModalOpen}
+            onClose={() => setIsLoginModalOpen(false)}
+            title="복잡한 절차 없이 3초만에 시작해요"
+          >
+            <div className="flex flex-col gap-3">
+              <GoogleSignInButton onClick={() => signIn("google")} />
+              <OAuthLoginButton onClick={() => signIn("kakao")} />
+            </div>
+          </Modal>
+        </div>
       )}
-      <MainPageCard className="text-white col-span-3">
+      <MainPageCard className="text-white col-span-3 bg-black">
         <nav>
           {!session && (
             <div className="flex justify-between items-center">

@@ -142,7 +142,7 @@ export default function MainSummary() {
           </div>
 
           {/* 하단부 */}
-          <BottomButton />
+          <BottomButton title="시작하기"/>
         </div>
       )}
     </div>
