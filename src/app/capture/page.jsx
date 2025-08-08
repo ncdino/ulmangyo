@@ -115,7 +115,7 @@ export default function CapturePage() {
           <button
             onClick={captureImage}
             disabled={loading}
-            className="absolute bg-transparent text-white px-4 py-2 rounded-full bottom-6 -translate-x-1/2 left-1/2 -translate-y-1/2"
+            className="absolute bg-black/50 text-white px-4 py-2 rounded-full bottom-6 -translate-x-1/2 left-1/2 -translate-y-1/2"
           >
             <Image src={CameraImg} alt="Camera Img" className="size-28" />
           </button>
