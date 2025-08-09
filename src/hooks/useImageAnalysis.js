@@ -27,6 +27,9 @@ function useImageAnalysis() {
         {
           image: { content: base64Image },
           features: [{ type: "DOCUMENT_TEXT_DETECTION", maxResults: 10 }],
+          // imageContext: {
+          //   languageHints: ["ko"],
+          // },
         },
       ],
     };
@@ -76,6 +79,8 @@ function useImageAnalysis() {
                   word.symbols?.map((symbol) => symbol.text).join("")
                 )
                 .join(" ") || "";
+
+            console.log("API 인식 텍스트 : ", text)
             const boundingBox = paragraph.boundingBox;
             const area = getArea(boundingBox);
             const width = getWidth(boundingBox);

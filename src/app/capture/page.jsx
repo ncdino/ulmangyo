@@ -10,15 +10,15 @@ import Header from "../components/section/Header";
 import useStore from "@/app/store/zustand/store";
 import { signIn, useSession } from "next-auth/react";
 import Modal from "../components/section/Modal/Modal";
-import OAuthLoginButton from "../components/Button/OAuthLoginButton";
 import GoogleSignInButton from "../components/Button/GoogleSignInButton";
+import OAuthLoginButton from "../components/Button/OAuthLoginButton";
 import { db } from "@/app/util/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 export default function CapturePage() {
   const router = useRouter();
   const canvasRef = useRef(null);
-
+  const guideBoxRef = useRef(null);
   const { data: session, status } = useSession();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -37,17 +37,40 @@ export default function CapturePage() {
   }, []);
 
   const captureImage = async () => {
-    if (canvasRef.current && videoRef.current) {
+    if (canvasRef.current && videoRef.current && guideBoxRef.current) {
       const canvas = canvasRef.current;
       const video = videoRef.current;
+      const guideBox = guideBoxRef.current;
 
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
+      const videoRect = video.getBoundingClientRect();
+      const guideBoxRect = guideBox.getBoundingClientRect();
+
+      const scaleX = video.videoWidth / videoRect.width;
+      const scaleY = video.videoHeight / videoRect.height;
+
+      const cropX = (guideBoxRect.left - videoRect.left) * scaleX;
+      const cropY = (guideBoxRect.top - videoRect.top) * scaleY;
+      const cropWidth = guideBoxRect.width * scaleX;
+      const cropHeight = guideBoxRect.height * scaleY;
+
+      canvas.width = cropWidth;
+      canvas.height = cropHeight;
+
       const ctx = canvas.getContext("2d");
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      ctx.drawImage(
+        video,
+        cropX,
+        cropY,
+        cropWidth,
+        cropHeight,
+        0,
+        0,
+        cropWidth,
+        cropHeight
+      );
 
       const blob = await new Promise((resolve) => {
-        canvas.toBlob(resolve, "image/webP", 0.8);
+        canvas.toBlob(resolve, "image/webp", 0.9);
       });
 
       if (blob) {
@@ -66,7 +89,7 @@ export default function CapturePage() {
                 console.error("Error analyzing image:", error);
               }
             } else {
-              // 모달 띄어주기
+              alert("사용량이 모두 소진되었습니다.");
             }
           }
         }
@@ -81,7 +104,7 @@ export default function CapturePage() {
   }
 
   return (
-    <div className="h-screen">
+    <div className="h-screen max-w-xl mx-auto bg-gray-800 text-center font-pretendard">
       <Header>
         <div>
           가격표에 맞춰서 &nbsp;
@@ -89,7 +112,6 @@ export default function CapturePage() {
           눌러보세요 !
         </div>
       </Header>
-      {/* ✅ 재사용 가능한 Modal 적용 */}
       {!session && (
         <Modal
           isOpen={isModalOpen}
@@ -103,22 +125,31 @@ export default function CapturePage() {
         </Modal>
       )}
       {session && (
-        <div className="relative p-2 font-pretendard px-2">
-          <div className="relative w-full h-1/4 aspect-9/16 inset-0 border border-gray-300 rounded-2xl">
+        <div className="h-full flex flex-col items-center justify-center p-4 gap-4">
+          <div className="relative w-full max-w-md aspect-[9/16] rounded-2xl overflow-hidden border-2 border-gray-500">
             <video
               ref={videoRef}
               autoPlay
               playsInline
-              className="absolute inset-0 w-full h-full aspect-9/16 object-cover rounded-2xl"
+              className="w-full h-full object-cover"
             />
+            <div
+              ref={guideBoxRef}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[25%] border-4 border-white rounded-lg pointer-events-none [box-shadow:0_0_0_9999px_rgba(0,0,0,0.6)]"
+            ></div>
           </div>
-          <button
-            onClick={captureImage}
-            disabled={loading}
-            className="absolute bg-black/50 text-white px-4 py-2 rounded-full bottom-6 -translate-x-1/2 left-1/2 -translate-y-1/2"
-          >
-            <Image src={CameraImg} alt="Camera Img" className="size-28" />
-          </button>
+
+          {/* 캡처 버튼 */}
+          <div className="flex-shrink-0 mt-4">
+            <button
+              onClick={captureImage}
+              disabled={loading}
+              className="bg-white/30 text-white rounded-full p-2"
+            >
+              <Image src={CameraImg} alt="Camera Img" className="size-24" />
+            </button>
+          </div>
+
           <canvas ref={canvasRef} style={{ display: "none" }} />
         </div>
       )}

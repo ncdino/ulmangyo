@@ -1,8 +1,8 @@
 "use client";
+
 import React, { useState } from "react";
 import useStore from "@/app/store/zustand/store";
 import Header from "../components/section/Header";
-import Image from "next/image";
 import MainPageCard from "../components/Card/MainPageCard";
 import Link from "next/link";
 import emptyBagImg from "../../../public/empty-bag.png";
@@ -95,7 +95,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="bg-primary h-screen">
+    <div className="bg-primary max-w-xl mx-auto h-screen">
       <Header>현재 고객님의 장바구니 입니다.😊</Header>
       <div className="mx-4 py-4 font-pretendard tracking-tighter text-white">
         <div className="grid grid-cols-2 gap-4">
