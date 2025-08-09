@@ -16,18 +16,30 @@ import { db } from "@/app/util/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
 
+
 export default function CapturePage() {
   const router = useRouter();
   const canvasRef = useRef(null);
   const guideBoxRef = useRef(null);
   const { data: session, status } = useSession();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [isInit, setIsInit] = useState(true);
 
   useEffect(() => {
     if (!session) {
       setIsModalOpen(true);
     }
   }, [session]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInit(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
 
   const { videoRef, streamError } = useCameraStream();
   const { loading, analyzeAndSave } = useImageAnalysis();
@@ -39,6 +51,8 @@ export default function CapturePage() {
 
   const captureImage = async () => {
     if (canvasRef.current && videoRef.current && guideBoxRef.current) {
+      setIsAnalyzing(true);
+
       const canvas = canvasRef.current;
       const video = videoRef.current;
       const guideBox = guideBoxRef.current;
@@ -97,6 +111,8 @@ export default function CapturePage() {
       } else {
         console.error("Failed to create blob");
       }
+
+      setIsAnalyzing(false);
     }
   };
 
@@ -141,13 +157,27 @@ export default function CapturePage() {
             w-[85%] h-[25%] border-dotted border-2 border-white rounded-lg pointer-events-none 
             shadow-[0_0_0_9999px_rgba(0,0,0,0.6)] flex items-center justify-center"
             >
-              <motion.span
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 0 }}
-                transition={{ duration: 5, ease: "easeOut" }}
-                className="font-pretendard text-white text-sm sm:text-base font-semibold bg-black/50 px-2 py-1 rounded-md">
-                가격표를 이 박스 안에 맞춰주세요
-              </motion.span>
+              {isAnalyzing && !isInit && (
+                <motion.span
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0.8 }}
+                  transition={{ repeat: Infinity, duration: 1.2 }}
+                  className="font-pretendard text-white text-sm sm:text-base font-semibold bg-black/50 px-2 py-1 rounded-md"
+                >
+                  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Crystal%20Ball.png" alt="Crystal Ball" width="100" height="100" />
+                </motion.span>
+              )}
+
+              {!isAnalyzing && isInit && (
+                <motion.span
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ duration: 5, ease: "easeOut" }}
+                  className="font-pretendard text-white text-sm sm:text-base font-semibold bg-black/50 px-2 py-1 rounded-md"
+                >
+                  가격표를 이 박스 안에 맞춰주세요
+                </motion.span>
+              )}
             </div>
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
               <button
