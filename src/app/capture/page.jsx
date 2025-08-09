@@ -14,6 +14,7 @@ import GoogleSignInButton from "../components/Button/GoogleSignInButton";
 import OAuthLoginButton from "../components/Button/OAuthLoginButton";
 import { db } from "@/app/util/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { motion } from "framer-motion";
 
 export default function CapturePage() {
   const router = useRouter();
@@ -104,7 +105,7 @@ export default function CapturePage() {
   }
 
   return (
-    <div className="h-screen max-w-xl mx-auto bg-gray-800 text-center font-pretendard">
+    <div className="h-screen max-w-xl mx-auto bg-neutral-950 text-center font-pretendard flex flex-col">
       <Header>
         <div>
           가격표에 맞춰서 &nbsp;
@@ -112,6 +113,7 @@ export default function CapturePage() {
           눌러보세요 !
         </div>
       </Header>
+
       {!session && (
         <Modal
           isOpen={isModalOpen}
@@ -124,29 +126,43 @@ export default function CapturePage() {
           </div>
         </Modal>
       )}
+
       {session && (
-        <div className="h-full flex flex-col items-center justify-center p-4 gap-4">
-          <div className="relative w-full max-w-md aspect-[9/16] rounded-2xl overflow-hidden border-2 border-gray-500">
+        <div className="flex-1 flex flex-col justify-between p-4">
+          {/* 비디오 영역 */}
+          <div className="relative w-full max-w-md aspect-[9/16] mx-auto rounded-2xl overflow-hidden">
             <video
               ref={videoRef}
               autoPlay
               playsInline
               className="w-full h-full object-cover"
             />
+
+            {/* 가이드라인 */}
             <div
               ref={guideBoxRef}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[25%] border-4 border-white rounded-lg pointer-events-none [box-shadow:0_0_0_9999px_rgba(0,0,0,0.6)]"
-            ></div>
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+            w-[85%] h-[25%] border-dotted border-2 border-white rounded-lg pointer-events-none 
+            shadow-[0_0_0_9999px_rgba(0,0,0,0.6)] flex items-center justify-center"
+            >
+              <motion.span
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 0 }}
+                transition={{ duration: 5, ease: "easeOut" }}
+                className="font-pretendard text-white text-sm sm:text-base font-semibold bg-black/50 px-2 py-1 rounded-md">
+                가격표를 이 박스 안에 맞춰주세요
+              </motion.span>
+            </div>
           </div>
 
           {/* 캡처 버튼 */}
-          <div className="flex-shrink-0 mt-4">
+          <div className="flex justify-center mt-4 mb-6">
             <button
               onClick={captureImage}
               disabled={loading}
-              className="bg-white/30 text-white rounded-full p-2"
+              className="bg-white/80 rounded-full p-4 shadow-lg hover:scale-105 transition-transform"
             >
-              <Image src={CameraImg} alt="Camera Img" className="size-24" />
+              <Image src={CameraImg} alt="Camera Img" className="size-16" />
             </button>
           </div>
 
@@ -154,5 +170,6 @@ export default function CapturePage() {
         </div>
       )}
     </div>
+
   );
 }

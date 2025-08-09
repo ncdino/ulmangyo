@@ -22,12 +22,12 @@ export default function BeforeSetBudget({
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 max-w-xl mx-auto ${
+      className={`fixed inset-0 flex items-center justify-center bg-black/50 max-w-xl mx-auto ${
         isOpen ? "block" : "hidden"
       }`}
     >
-      <div className="bg-zinc-800 p-4 rounded-2xl mx-2 w-full h-64">
-        <h1 className="tracking-tighter text-2xl mb-4 text-zinc-100">
+      <div className="bg-neutral-50 p-4 rounded-2xl mx-8 w-full h-64">
+        <h1 className="tracking-tighter text-2xl mb-3 mx-2 text-neutral-800">
           <img
             src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Bell.png"
             alt="Bell"
@@ -45,21 +45,21 @@ export default function BeforeSetBudget({
           value={inputValue}
           step={1000}
           onChange={handleInputChange}
-          className={`border-3 rounded-2xl bg-zinc-800 px-3 py-2 mb-4 w-full text-white appearance-none text-center transition-colors duration-300 ${
-            inputValue ? "border-blue-500" : "border-zinc-700"
+          className={`border-3 rounded-2xl bg-neutral-50 px-3 py-2 mb-4 w-full text-neutral-800 appearance-none text-center transition-colors focus:border-blue-400 focus:outline-none duration-300 ${
+            inputValue ? "border-blue-400" : "border-neutral-50"
           }`}
-          placeholder="0원"
+          placeholder="0"
         />
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-4 font-semibold">
           <button
             onClick={onRequestClose}
-            className="col-span-1 bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg mr-2"
+            className="col-span-1 bg-gray-300 text-gray-800 py-3 px-4 rounded-xl mr-2"
           >
             안할래요
           </button>
           <button
             onClick={handleSetBudget}
-            className="col-span-2 bg-btnHighlight text-white font-semibold py-2 px-4 rounded-lg"
+            className="col-span-2 bg-blue-500 text-white py-3 px-4 rounded-xl"
           >
             이 금액으로 설정할래요
           </button>
