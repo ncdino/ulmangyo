@@ -113,7 +113,6 @@ export default function CapturePage() {
           눌러보세요 !
         </div>
       </Header>
-
       {!session && (
         <Modal
           isOpen={isModalOpen}
@@ -126,7 +125,6 @@ export default function CapturePage() {
           </div>
         </Modal>
       )}
-
       {session && (
         <div className="flex-1 flex flex-col justify-between p-4">
           {/* 비디오 영역 */}
@@ -137,8 +135,6 @@ export default function CapturePage() {
               playsInline
               className="w-full h-full object-cover"
             />
-
-            {/* 가이드라인 */}
             <div
               ref={guideBoxRef}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
@@ -153,23 +149,23 @@ export default function CapturePage() {
                 가격표를 이 박스 안에 맞춰주세요
               </motion.span>
             </div>
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+              <button
+                onClick={captureImage}
+                disabled={loading}
+                className="bg-black/30 rounded-full p-4 shadow-lg hover:scale-105 transition-transform"
+              >
+                <Image src={CameraImg} alt="Camera Img" className="size-16" />
+              </button>
+            </div>
           </div>
 
           {/* 캡처 버튼 */}
-          <div className="flex justify-center mt-4 mb-6">
-            <button
-              onClick={captureImage}
-              disabled={loading}
-              className="bg-white/80 rounded-full p-4 shadow-lg hover:scale-105 transition-transform"
-            >
-              <Image src={CameraImg} alt="Camera Img" className="size-16" />
-            </button>
-          </div>
+
 
           <canvas ref={canvasRef} style={{ display: "none" }} />
         </div>
       )}
     </div>
-
   );
 }
